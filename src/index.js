@@ -1,5 +1,50 @@
 'use strict';
 
+
+var context = {
+  "oa" :     "http://www.w3.org/ns/oa#",
+  "dc" :     "http://purl.org/dc/elements/1.1/",
+  "dcterms": "http://purl.org/dc/terms/",
+  "dctypes": "http://purl.org/dc/dcmitype/",
+  "foaf" :   "http://xmlns.com/foaf/0.1/",
+  "rdf" :    "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+  "rdfs" :   "http://www.w3.org/2000/01/rdf-schema#",
+  "skos" :   "http://www.w3.org/2004/02/skos/core#",
+
+  "body" :         {"@id" : "oa:hasBody"},
+  "target" :       {"@type":"@id", "@id" : "oa:hasTarget"},
+  "source" :       {"@type":"@id", "@id" : "oa:hasSource"},
+  "selector" :     {"@type":"@id", "@id" : "oa:hasSelector"},
+  "state" :        {"@type":"@id", "@id" : "oa:hasState"},
+  "scope" :        {"@type":"@id", "@id" : "oa:hasScope"},
+  "annotatedBy" :  {"@type":"@id", "@id" : "oa:annotatedBy"},
+  "serializedBy" : {"@type":"@id", "@id" : "oa:serializedBy"},
+  "motivation" :   {"@type":"@id", "@id" : "oa:motivatedBy"},
+  "stylesheet" :   {"@type":"@id", "@id" : "oa:styledBy"},
+  "cached" :       {"@type":"@id", "@id" : "oa:cachedSource"},
+  "conformsTo" :   {"@type":"@id", "@id" : "dcterms:conformsTo"},
+  "members" :      {"@type":"@id", "@id" : "oa:membershipList", "@container": "@list"},
+  "item" :         {"@type":"@id", "@id" : "oa:item"},
+  "related" :      {"@type":"@id", "@id" : "skos:related"},
+
+  "format" :       "dc:format",
+  "language":      "dc:language",
+  "annotatedAt" :  "oa:annotatedAt",
+  "serializedAt" : "oa:serializedAt",
+  "when" :         "oa:when",
+  "value" :        "rdf:value",
+  "start" :        "oa:start",
+  "end" :          "oa:end",
+  "exact" :        "oa:exact",
+  "prefix" :       "oa:prefix",
+  "suffix" :       "oa:suffix",
+  "label" :        "rdfs:label",
+  "name" :         "foaf:name",
+  "mbox" :         "foaf:mbox",
+  "nick" :         "foaf:nick",
+  "styleClass" :   "oa:styleClass"
+};
+
 function toWebAnnotation(annotation) {
   return {
     "@type": "oa:Annotation",
@@ -29,7 +74,8 @@ function toWebAnnotation(annotation) {
     },
     // TODO: where should we keep the xpath stuff in Web Annotation?
     // ...this key is ugly on purpose...
-    "-from-annotator-": annotation
+    "-from-annotator-": annotation,
+    "@context": context
   };
 }
 

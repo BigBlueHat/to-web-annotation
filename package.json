@@ -1,6 +1,6 @@
 {
   "name": "to-web-annotation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Convert various annotation data formats to Web Annotation Data Model",
   "main": "src/index.js",
   "scripts": {
