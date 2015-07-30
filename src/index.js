@@ -47,6 +47,7 @@ var context = {
 
 function toWebAnnotation(annotation) {
   return {
+    "@id": annotation.id,
     "@type": "oa:Annotation",
     "body": annotation.text,
     "target": {
