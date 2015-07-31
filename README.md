@@ -16,6 +16,20 @@ shape for the JSON-LD and some simple transformation code.
 
 Only time will tell...and your issues and pull requests maybe. :wink:
 
+## NOTE
+
+This isn't doing what it should...yet...
+
+Annotator doesn't generate "open world assuming" documents and has "out of
+band" data only known to the Annotator setup code (not to the output data)
+about how and where these annotations are made.
+
+As such, the text ranges are all wrong, as they require that the XPath (which
+is not currently expressed in the Web Annotation output) be evaluated against
+an unknown-to-the-data starting element.
+
+...stay tuned... :radio:
+
 ## Usage
 
 ```
