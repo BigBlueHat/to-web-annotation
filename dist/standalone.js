@@ -79,7 +79,7 @@ function fromAnnotatorToWebAnnotation(annotation) {
     },
     // TODO: where should we keep the xpath stuff in Web Annotation?
     // ...this key is ugly on purpose...
-    "-from-annotator-": annotation,
+    "--original--": annotation,
     "@context": context
   };
 }
@@ -106,7 +106,7 @@ function fromHypothesisToWebAnnotation(annotation) {
     "target": annotation.target,
     // TODO: where should we keep the xpath stuff in Web Annotation?
     // ...this key is ugly on purpose...
-    "-from-annotator-": annotation,
+    "--original--": annotation,
     "@context": context
   };
 }
@@ -156,8 +156,8 @@ function fromWebAnnotation(annotation) {
   }
 
   // TODO: handle multiple ranges
-  rv.ranges[0].start = annotation['-from-annotator-'].ranges[0].start;
-  rv.ranges[0].end = annotation['-from-annotator-'].ranges[0].end;
+  rv.ranges[0].start = annotation['--original--'].ranges[0].start;
+  rv.ranges[0].end = annotation['--original--'].ranges[0].end;
 
   return rv;
 }
