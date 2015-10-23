@@ -47,38 +47,47 @@ var context = {
 };
 
 function toWebAnnotation(annotation) {
-  return {
-    "@id": annotation.id,
-    "@type": "oa:Annotation",
-    "body": annotation.text,
-    "target": {
-      "@id": "#resource",
-      "@type": "oa:SpecificResource",
-      "source": annotation.uri,
-      "selector": {
-        "@id": "#selectors",
-        "@type": "oa:Choice",
-        "members": [
-          {
-            "@id": "#quote",
-            "@type": "oa:TextQuoteSelector",
-            "exact": annotation.quote
-          },
-          {
-            "@id": "#position",
-            "@type": "oa:TextPositionSelector",
-            // TODO: handle multiple ranges
-            "start": annotation.ranges[0].startOffset,
-            "end": annotation.ranges[0].endOffset
-          }
-        ]
-      }
-    },
-    // TODO: where should we keep the xpath stuff in Web Annotation?
-    // ...this key is ugly on purpose...
-    "-from-annotator-": annotation,
-    "@context": context
-  };
+  if (undefined !== annotation.id
+      && undefined !== annotation.text
+      && undefined !== annotation.uri
+      && undefined !== annotation.quote
+      && undefined !== annotation.ranges) {
+    return {
+      "@id": annotation.id,
+      "@type": "oa:Annotation",
+      "body": annotation.text,
+      "target": {
+        "@id": "#resource",
+        "@type": "oa:SpecificResource",
+        "source": annotation.uri,
+        "selector": {
+          "@id": "#selectors",
+          "@type": "oa:Choice",
+          "members": [
+            {
+              "@id": "#quote",
+              "@type": "oa:TextQuoteSelector",
+              "exact": annotation.quote
+            },
+            {
+              "@id": "#position",
+              "@type": "oa:TextPositionSelector",
+              // TODO: handle multiple ranges
+              "start": annotation.ranges[0].startOffset,
+              "end": annotation.ranges[0].endOffset
+            }
+          ]
+        }
+      },
+      // TODO: where should we keep the xpath stuff in Web Annotation?
+      // ...this key is ugly on purpose...
+      "-from-annotator-": annotation,
+      "@context": context
+    };
+  } else {
+    // TODO: is false the best response here?
+    return false;
+  }
 }
 
 function fromWebAnnotation(annotation) {
