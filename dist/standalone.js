@@ -46,6 +46,9 @@ var context = {
   "styleClass" :   "oa:styleClass"
 };
 
+/**
+ * From http://annotatorjs.org/ JSON to Web Annotation
+ **/
 function fromAnnotatorToWebAnnotation(annotation) {
   return {
     "@id": annotation.id,
@@ -81,6 +84,33 @@ function fromAnnotatorToWebAnnotation(annotation) {
   };
 }
 
+/**
+ * From http://hypothes.is/ JSON to Web Annotation
+ **/
+function fromHypothesisToWebAnnotation(annotation) {
+  // TODO: remove non-JSON-LD cruft? or leave it?
+  //
+  // TODO: "upgrade" tags & text to separate bodies with roles
+  var creator_nick = annotation.user.replace('acct:', '')
+    .replace('@hypothes.is', '');
+  return {
+    "@id": "http://hypothes.is/a/" + annotation.id,
+    "@type": "oa:Annotation",
+    "creator": {
+      "@id": annotation.user,
+      "@type": "Person",
+      "nick": creator_nick
+    },
+    "body": annotation.text,
+    "created": annotation.created,
+    "target": annotation.target,
+    // TODO: where should we keep the xpath stuff in Web Annotation?
+    // ...this key is ugly on purpose...
+    "-from-annotator-": annotation,
+    "@context": context
+  };
+}
+
 function toWebAnnotation(annotation) {
   if (undefined !== annotation.id
       && undefined !== annotation.text
@@ -88,6 +118,12 @@ function toWebAnnotation(annotation) {
       && undefined !== annotation.quote
       && undefined !== annotation.ranges) {
     return fromAnnotatorToWebAnnotation(annotation);
+  } else if (undefined !== annotation.target
+      && undefined !== annotation.text
+      && undefined !== annotation.uri
+      && undefined !== annotation.document
+      && undefined !== annotation.user) {
+    return fromHypothesisToWebAnnotation(annotation);
   } else {
     // TODO: is false the best response here?
     return false;
