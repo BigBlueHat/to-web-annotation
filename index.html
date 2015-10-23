@@ -24,23 +24,22 @@
   </div>
   <script src="dist/standalone.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.8/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.16/vue-resource.min.js"></script>
   <script>
   var app = new Vue({
     el: document.body,
     data: {
-      input: {
-        "quote": "netus",
-        "uri": "http://localhost:8000/",
-        "text": "open annotation?",
-        "id": "34415807-0B0C-A3A9-87F2-2451D73DD683",
-        "ranges": [
-          {
-            "start": "/p[1]",
-            "startOffset": 50,
-            "end": "/p[1]",
-            "endOffset": 56
-          }
-        ]
+      input: {}
+    },
+    ready: function() {
+      // load Annotator by default
+      this.loadJSON('annotatorjs.json');
+    },
+    methods: {
+      loadJSON: function(url) {
+        this.$http.get(url, function(data) {
+          this.$set('input', data);
+        });
       }
     },
     filters: {

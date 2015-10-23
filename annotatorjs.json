@@ -1,0 +1,14 @@
+{
+  "quote": "netus",
+  "uri": "http://localhost:8000/",
+  "text": "open annotation?",
+  "id": "34415807-0B0C-A3A9-87F2-2451D73DD683",
+  "ranges": [
+    {
+      "start": "/p[1]",
+      "startOffset": 50,
+      "end": "/p[1]",
+      "endOffset": 56
+    }
+  ]
+}
