@@ -1,0 +1,76 @@
+{
+  "updated": "2014-09-18T21:43:16.353744+00:00",
+  "group": "__world__",
+  "target": [
+    {
+      "scope": [
+        "http://faculty.georgetown.edu/irvinem/theory/Berners-Lee-HTTP-proposal.pdf"
+      ],
+      "selector": [
+        {
+          "endContainer": "/div[1]/div[2]/div[4]/div[1]/div[1]/div[2]/div[16]",
+          "endOffset": 7,
+          "type": "RangeSelector",
+          "startOffset": 0,
+          "startContainer": "/div[1]/div[2]/div[4]/div[1]/div[1]/div[2]/div[16]"
+        },
+        {
+          "start": 397,
+          "end": 404,
+          "type": "TextPositionSelector"
+        },
+        {
+          "exact": "ENQUIRE",
+          "prefix": "information Hypermedia CERNDOC",
+          "type": "TextQuoteSelector",
+          "suffix": "Tim Berners-Lee section group C"
+        }
+      ],
+      "pos": {
+        "top": 549.5,
+        "height": 17
+      },
+      "source": "http://faculty.georgetown.edu/irvinem/theory/Berners-Lee-HTTP-proposal.pdf"
+    }
+  ],
+  "tags": [
+    "web",
+    "history"
+  ],
+  "text": "As featured in \"Weaving the Web\" by Tim Berners-Lee",
+  "created": "2014-09-18T21:32:13.492351+00:00",
+  "uri": "http://faculty.georgetown.edu/irvinem/theory/Berners-Lee-HTTP-proposal.pdf",
+  "user": "acct:BigBlueHat@hypothes.is",
+  "document": {
+    "eprints": {},
+    "title": "Berners-Lee-HTTP-proposal.pdf",
+    "twitter": {},
+    "dc": {},
+    "prism": {},
+    "highwire": {},
+    "facebook": {},
+    "reply_to": [],
+    "link": [
+      {
+        "href": "http://faculty.georgetown.edu/irvinem/theory/Berners-Lee-HTTP-proposal.pdf"
+      }
+    ]
+  },
+  "consumer": "00000000-0000-0000-0000-000000000000",
+  "id": "Gk_TW9d_SyCG5cFH4UCy9A",
+  "permissions": {
+    "admin": [
+      "acct:BigBlueHat@hypothes.is"
+    ],
+    "read": [
+      "acct:BigBlueHat@hypothes.is",
+      "group:__world__"
+    ],
+    "update": [
+      "acct:BigBlueHat@hypothes.is"
+    ],
+    "delete": [
+      "acct:BigBlueHat@hypothes.is"
+    ]
+  }
+}

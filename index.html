@@ -9,7 +9,10 @@
   <div class="ui internally celled grid">
     <div class="row">
       <div class="eight wide column">
-        <h4>Annotator JSON</h4>
+        <div class="ui horizontal divided list">
+          <a class="item" v-on="click: loadJSON('annotatorjs.json')">Annotator JSON</a>
+          <a class="item" v-on="click: loadJSON('hypothesis.json')">Hypothes.is JSON</a>
+        </div>
       </div>
       <div class="eight wide column">
         <h4>Web Annotation JSON-LD</h4>
