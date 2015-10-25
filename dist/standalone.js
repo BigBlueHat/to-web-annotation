@@ -149,12 +149,44 @@ module.exports = {
 };
 
 },{}],3:[function(require,module,exports){
+module.exports = {
+  /**
+   * From http://hypothes.is/ JSON to Web Annotation
+   **/
+  from: function(annotation) {
+    // TODO: remove non-JSON-LD cruft? or leave it?
+    //
+    // TODO: "upgrade" tags & text to separate bodies with roles
+    // TODO: turn RangeSelector (xpath) into #xpointer FragmentSelector
+    var creator_nick = annotation.user.replace('acct:', '')
+      .replace('@hypothes.is', '');
+    return {
+      "@id": "http://hypothes.is/a/" + annotation.id,
+      "@type": "oa:Annotation",
+      "creator": {
+        "@id": annotation.user,
+        "@type": "Person",
+        "nick": creator_nick
+      },
+      "body": annotation.text,
+      "created": annotation.created,
+      "target": annotation.target,
+      // TODO: where should we keep the xpath stuff in Web Annotation?
+      // ...this key is ugly on purpose...
+      "--original--": annotation,
+      "@context": context
+    };
+  }
+};
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var context = require('./context.json');
 
 var fromAnnotatorToWebAnnotation = require('./from-annotator').from;
 
+var fromHypothesisToWebAnnotation = require('./from-hypothesis').from;
 /**
  * From http://hypothes.is/ JSON to Web Annotation
  **/
@@ -237,5 +269,5 @@ function fromWebAnnotation(annotation) {
 exports.toWebAnnotation = toWebAnnotation;
 exports.fromWebAnnotation = fromWebAnnotation;
 
-},{"./context.json":1,"./from-annotator":2}]},{},[3])(3)
+},{"./context.json":1,"./from-annotator":2,"./from-hypothesis":3}]},{},[4])(4)
 });

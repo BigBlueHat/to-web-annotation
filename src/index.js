@@ -4,6 +4,7 @@ var context = require('./context.json');
 
 var fromAnnotatorToWebAnnotation = require('./from-annotator').from;
 
+var fromHypothesisToWebAnnotation = require('./from-hypothesis').from;
 /**
  * From http://hypothes.is/ JSON to Web Annotation
  **/
