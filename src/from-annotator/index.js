@@ -1,3 +1,5 @@
+var context = require('../context.json');
+
 module.exports = {
   /**
    * From http://annotatorjs.org/ JSON to Web Annotation

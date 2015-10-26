@@ -108,6 +108,8 @@ module.exports={
 }
 
 },{}],2:[function(require,module,exports){
+var context = require('../context.json');
+
 module.exports = {
   /**
    * From http://annotatorjs.org/ JSON to Web Annotation
@@ -184,7 +186,9 @@ module.exports = {
   }
 };
 
-},{}],3:[function(require,module,exports){
+},{"../context.json":1}],3:[function(require,module,exports){
+var context = require('../context.json');
+
 module.exports = {
   /**
    * From http://hypothes.is/ JSON to Web Annotation
@@ -215,10 +219,8 @@ module.exports = {
   }
 };
 
-},{}],4:[function(require,module,exports){
+},{"../context.json":1}],4:[function(require,module,exports){
 'use strict';
-
-var context = require('./context.json');
 
 var fromAnnotatorToWebAnnotation = require('./from-annotator').from;
 
@@ -252,5 +254,5 @@ function fromWebAnnotation(annotation) {
 exports.toWebAnnotation = toWebAnnotation;
 exports.fromWebAnnotation = fromWebAnnotation;
 
-},{"./context.json":1,"./from-annotator":2,"./from-hypothesis":3}]},{},[4])(4)
+},{"./from-annotator":2,"./from-hypothesis":3}]},{},[4])(4)
 });
