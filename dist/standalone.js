@@ -15,6 +15,9 @@ module.exports={
     "owl":     "http://www.w3.org/2002/07/owl#",
     "as":      "http://www.w3.org/ns/activitystreams#",
 
+    "id":      "@id",
+    "type":    "@type",
+
     "Annotation":           "oa:Annotation",
     "Dataset":              "dctypes:Dataset",
     "Image":                "dctypes:StillImage",
@@ -116,25 +119,25 @@ module.exports = {
    **/
   from: function(annotation) {
     return {
-      "@id": annotation.id,
-      "@type": "oa:Annotation",
+      "id": annotation.id,
+      "type": "oa:Annotation",
       "body": annotation.text,
       "target": {
-        "@id": "#resource",
-        "@type": "oa:SpecificResource",
+        "id": "#resource",
+        "type": "oa:SpecificResource",
         "source": annotation.uri,
         "selector": {
-          "@id": "#selectors",
-          "@type": "oa:Choice",
+          "id": "#selectors",
+          "type": "oa:Choice",
           "members": [
             {
-              "@id": "#quote",
-              "@type": "oa:TextQuoteSelector",
+              "id": "#quote",
+              "type": "oa:TextQuoteSelector",
               "exact": annotation.quote
             },
             {
-              "@id": "#position",
-              "@type": "oa:TextPositionSelector",
+              "id": "#position",
+              "type": "oa:TextPositionSelector",
               // TODO: handle multiple ranges
               "start": annotation.ranges[0].startOffset,
               "end": annotation.ranges[0].endOffset
@@ -201,11 +204,11 @@ module.exports = {
     var creator_nick = annotation.user.replace('acct:', '')
       .replace('@hypothes.is', '');
     var rv = {
-      "@id": "http://hypothes.is/a/" + annotation.id,
-      "@type": "oa:Annotation",
+      "id": "http://hypothes.is/a/" + annotation.id,
+      "type": "oa:Annotation",
       "creator": {
-        "@id": annotation.user,
-        "@type": "Person",
+        "id": annotation.user,
+        "type": "Person",
         "nick": creator_nick
       },
       "body": [

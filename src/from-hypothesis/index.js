@@ -12,11 +12,11 @@ module.exports = {
     var creator_nick = annotation.user.replace('acct:', '')
       .replace('@hypothes.is', '');
     var rv = {
-      "@id": "http://hypothes.is/a/" + annotation.id,
-      "@type": "oa:Annotation",
+      "id": "http://hypothes.is/a/" + annotation.id,
+      "type": "oa:Annotation",
       "creator": {
-        "@id": annotation.user,
-        "@type": "Person",
+        "id": annotation.user,
+        "type": "Person",
         "nick": creator_nick
       },
       "body": [

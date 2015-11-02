@@ -1,119 +1,272 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
+module.exports={
+ "@context": {
+    "oa":      "http://www.w3.org/ns/oa#",
+    "dc":      "http://purl.org/dc/elements/1.1/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "dctypes": "http://purl.org/dc/dcmitype/",
+    "foaf":    "http://xmlns.com/foaf/0.1/",
+    "rdf":     "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs":    "http://www.w3.org/2000/01/rdf-schema#",
+    "skos":    "http://www.w3.org/2004/02/skos/core#",
+    "xsd":     "http://www.w3.org/2001/XMLSchema#",
+    "ldp":     "http://www.w3.org/ns/ldp#",
+    "iana":    "http://www.iana.org/assignments/relation/",
+    "owl":     "http://www.w3.org/2002/07/owl#",
+    "as":      "http://www.w3.org/ns/activitystreams#",
 
+    "id":      "@id",
+    "type":    "@type",
 
-var context = {
-  "oa" :     "http://www.w3.org/ns/oa#",
-  "dc" :     "http://purl.org/dc/elements/1.1/",
-  "dcterms": "http://purl.org/dc/terms/",
-  "dctypes": "http://purl.org/dc/dcmitype/",
-  "foaf" :   "http://xmlns.com/foaf/0.1/",
-  "rdf" :    "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-  "rdfs" :   "http://www.w3.org/2000/01/rdf-schema#",
-  "skos" :   "http://www.w3.org/2004/02/skos/core#",
+    "Annotation":           "oa:Annotation",
+    "Dataset":              "dctypes:Dataset",
+    "Image":                "dctypes:StillImage",
+    "Video":                "dctypes:MovingImage",
+    "Audio":                "dctypes:Sound",
+    "Text":                 "dctypes:Text",
+    "EmbeddedContent":      "oa:EmbeddedContent",
+    "TextualBody":          "oa:TextualBody",
+    "SpecificResource":     "oa:SpecificResource",
+    "FragmentSelector":     "oa:FragmentSelector",
+    "TextQuoteSelector":    "oa:TextQuoteSelector",
+    "TextPositionSelector": "oa:TextPositionSelector",
+    "DataPositionSelector": "oa:DataPositionSelector",
+    "SvgSelector":          "oa:SvgSelector",
+    "TimeState":            "oa:TimeState",
+    "HttpState":            "oa:HttpRequestState",
+    "CssStylesheet":        "oa:CssStyle",
+    "Choice":               "oa:Choice",
+    "Composite":            "oa:Composite",
+    "List":                 "oa:List",
+    "Person":               "foaf:Person",
+    "Sofware":              "prov:SoftwareAgent",
+    "Organization":         "foaf:Organization",
+    "Container":            "ldp:BasicContainer",
+    "DirectContainer":      "ldp:DirectContainer",
+    "IndirectContainer":    "ldp:IndirectContainer",
+    "Collection":           "as:Collection",
+    "OrderedCollection":    "as:OrderedCollection",
+    "OrderedCollectionPage": "as:OrderedCollectionPage", 
 
-  "body" :         {"@id" : "oa:hasBody"},
-  "target" :       {"@type":"@id", "@id" : "oa:hasTarget"},
-  "source" :       {"@type":"@id", "@id" : "oa:hasSource"},
-  "selector" :     {"@type":"@id", "@id" : "oa:hasSelector"},
-  "state" :        {"@type":"@id", "@id" : "oa:hasState"},
-  "scope" :        {"@type":"@id", "@id" : "oa:hasScope"},
-  "annotatedBy" :  {"@type":"@id", "@id" : "oa:annotatedBy"},
-  "serializedBy" : {"@type":"@id", "@id" : "oa:serializedBy"},
-  "motivation" :   {"@type":"@id", "@id" : "oa:motivatedBy"},
-  "stylesheet" :   {"@type":"@id", "@id" : "oa:styledBy"},
-  "cached" :       {"@type":"@id", "@id" : "oa:cachedSource"},
-  "conformsTo" :   {"@type":"@id", "@id" : "dcterms:conformsTo"},
-  "members" :      {"@type":"@id", "@id" : "oa:membershipList", "@container": "@list"},
-  "item" :         {"@type":"@id", "@id" : "oa:item"},
-  "related" :      {"@type":"@id", "@id" : "skos:related"},
+    "Motivation":    "oa:Motivation",
+    "bookmarking":   "oa:bookmarking",
+    "classifying":   "oa:classifying",
+    "commenting":    "oa:commenting",
+    "describing":    "oa:describing",
+    "editing":       "oa:editing",
+    "highlighting":  "oa:highlighting",
+    "identifying":   "oa:identifying",
+    "linking":       "oa:linking",
+    "moderating":    "oa:moderating",
+    "questioning":   "oa:questioning",
+    "replying":      "oa:replying",
+    "reviewing":     "oa:reviewing",
+    "tagging":       "oa:tagging",
 
-  "format" :       "dc:format",
-  "language":      "dc:language",
-  "annotatedAt" :  "oa:annotatedAt",
-  "serializedAt" : "oa:serializedAt",
-  "when" :         "oa:when",
-  "value" :        "rdf:value",
-  "start" :        "oa:start",
-  "end" :          "oa:end",
-  "exact" :        "oa:exact",
-  "prefix" :       "oa:prefix",
-  "suffix" :       "oa:suffix",
-  "label" :        "rdfs:label",
-  "name" :         "foaf:name",
-  "mbox" :         "foaf:mbox",
-  "nick" :         "foaf:nick",
-  "styleClass" :   "oa:styleClass"
+    "body":          {"@id": "oa:hasBody"},
+    "target":        {"@type": "@id", "@id": "oa:hasTarget"},
+    "source":        {"@type": "@id", "@id": "oa:hasSource"},
+    "selector":      {"@type": "@id", "@id": "oa:hasSelector"},
+    "state":         {"@type": "@id", "@id": "oa:hasState"},
+    "scope":         {"@type": "@id", "@id": "oa:hasScope"},
+    "creator":       {"@type": "@id", "@id": "dcterms:creator"},
+    "generator":     {"@type": "@id", "@id": "prov:generatedBy"},
+    "motivation":    {"@type": "@id", "@id": "oa:motivatedBy"},
+    "stylesheet":    {"@type": "@id", "@id": "oa:styledBy"},
+    "cached":        {"@type": "@id", "@id": "oa:cachedSource"},
+    "conformsTo":    {"@type": "@id", "@id": "dcterms:conformsTo"},
+    "members":       {"@type": "@id", "@id": "oa:memberList", "@container": "@list"},
+    "item":          {"@type": "@id", "@id": "oa:item"},
+    "orderedItems":  {"@type": "@id", "@id": "as:items", "@container": "@list"},
+    "partOf":        {"@type": "@id", "@id": "as:partOf"},
+    "first":         {"@type": "@id", "@id": "as:first"},
+    "last":          {"@type": "@id", "@id": "as:last"},
+    "next":          {"@type": "@id", "@id": "as:next"},
+    "prev":          {"@type": "@id", "@id": "as:prev"},
+    "contains":      {"@type": "@id", "@id": "ldp:contains"},
+    "membersIn":     {"@type": "@id", "@id": "ldp:membershipResource"},
+    "memberRel":     {"@type": "@id", "@id": "ldp:hasMemberRelation"},
+    "memberOfRel":   {"@type": "@id", "@id": "ldp:isMemberOfRelation"},
+    "contentRel":    {"@type": "@id", "@id": "ldp:insertedContentRelation"},
+
+    "format":        "dc:format",
+    "language":      "dc:language",
+    "created":       "dcterms:created",
+    "generated":     "prov:generatedAtTime",
+    "text":          "oa:text",
+    "value":         "rdf:value",
+    "start":         "oa:start",
+    "end":           "oa:end",
+    "exact":         "oa:exact",
+    "prefix":        "oa:prefix",
+    "suffix":        "oa:suffix",
+    "sourceDate":    "oa:sourceDate",
+    "styleClass":    "oa:styleClass",
+    "label":         "rdfs:label",
+    "name":          "foaf:name",
+    "mbox":          "foaf:mbox",
+    "nick":          "foaf:nick",
+    "totalItems":    "as:totalItems"
+  }
+}
+
+},{}],2:[function(require,module,exports){
+var context = require('../context.json');
+
+module.exports = {
+  /**
+   * From http://annotatorjs.org/ JSON to Web Annotation
+   **/
+  from: function(annotation) {
+    return {
+      "id": annotation.id,
+      "type": "oa:Annotation",
+      "body": annotation.text,
+      "target": {
+        "id": "#resource",
+        "type": "oa:SpecificResource",
+        "source": annotation.uri,
+        "selector": {
+          "id": "#selectors",
+          "type": "oa:Choice",
+          "members": [
+            {
+              "id": "#quote",
+              "type": "oa:TextQuoteSelector",
+              "exact": annotation.quote
+            },
+            {
+              "id": "#position",
+              "type": "oa:TextPositionSelector",
+              // TODO: handle multiple ranges
+              "start": annotation.ranges[0].startOffset,
+              "end": annotation.ranges[0].endOffset
+            }
+          ]
+        }
+      },
+      // TODO: where should we keep the xpath stuff in Web Annotation?
+      // ...this key is ugly on purpose...
+      "--original--": annotation,
+      "@context": context
+    };
+  },
+  /**
+   * From Web Annotation to http://annotatorjs.org/
+   *
+   * TODO: give this a better function name?
+   **/
+  to: function(annotation) {
+    if (undefined === annotation['@type']
+        || annotation['@type'] !== 'oa:Annotation'
+        // TODO: maybe check the @context to be sure we mean `oa:Annotation`?
+        || annotation['@type'] !== 'Annotation') {
+      // if it's not a Web Annotation, don't change it
+      return annotation;
+    }
+    var rv = {
+      "uri": annotation.target.source,
+      "quote": "",
+      "text": annotation.body,
+      "ranges": [{}]
+    };
+
+    var selectors = annotation.target.selector.members;
+    for (var i = 0; i < selectors.length; i++) {
+      if (selectors[i]['@type'] === 'oa:TextQuoteSelector') {
+        rv.quote = selectors[i].exact;
+      } else if (selectors[i]['@type'] === 'oa:TextPositionSelector') {
+        rv.ranges[0].startOffset = selectors[i].start;
+        rv.ranges[0].endOffset = selectors[i].end;
+      }
+    }
+
+    // TODO: handle multiple ranges
+    rv.ranges[0].start = annotation['--original--'].ranges[0].start;
+    rv.ranges[0].end = annotation['--original--'].ranges[0].end;
+
+    return rv;
+  }
 };
 
+},{"../context.json":1}],3:[function(require,module,exports){
+var context = require('../context.json');
+
+module.exports = {
+  /**
+   * From http://hypothes.is/ JSON to Web Annotation
+   **/
+  from: function(annotation) {
+    // TODO: remove non-JSON-LD cruft? or leave it?
+    //
+    // TODO: "upgrade" tags & text to separate bodies with roles
+    // TODO: turn RangeSelector (xpath) into #xpointer FragmentSelector
+    var creator_nick = annotation.user.replace('acct:', '')
+      .replace('@hypothes.is', '');
+    var rv = {
+      "id": "http://hypothes.is/a/" + annotation.id,
+      "type": "oa:Annotation",
+      "creator": {
+        "id": annotation.user,
+        "type": "Person",
+        "nick": creator_nick
+      },
+      "body": [
+        {
+          "role": "commenting",
+          "text": annotation.text
+        }
+      ],
+      "created": annotation.created,
+      "target": annotation.target,
+      // TODO: where should we keep the xpath stuff in Web Annotation?
+      // ...this key is ugly on purpose...
+      "--original--": annotation,
+      "@context": context
+    };
+    annotation.tags.forEach(function(tag) {
+      rv.body.push({
+        "role": "tagging",
+        "text": tag
+      });
+    });
+    return rv;
+  }
+};
+
+},{"../context.json":1}],4:[function(require,module,exports){
+'use strict';
+
+var fromAnnotatorToWebAnnotation = require('./from-annotator').from;
+
+var fromHypothesisToWebAnnotation = require('./from-hypothesis').from;
+
 function toWebAnnotation(annotation) {
-  return {
-    "@id": annotation.id,
-    "@type": "oa:Annotation",
-    "body": annotation.text,
-    "target": {
-      "@id": "#resource",
-      "@type": "oa:SpecificResource",
-      "source": annotation.uri,
-      "selector": {
-        "@id": "#selectors",
-        "@type": "oa:Choice",
-        "members": [
-          {
-            "@id": "#quote",
-            "@type": "oa:TextQuoteSelector",
-            "exact": annotation.quote
-          },
-          {
-            "@id": "#position",
-            "@type": "oa:TextPositionSelector",
-            // TODO: handle multiple ranges
-            "start": annotation.ranges[0].startOffset,
-            "end": annotation.ranges[0].endOffset
-          }
-        ]
-      }
-    },
-    // TODO: where should we keep the xpath stuff in Web Annotation?
-    // ...this key is ugly on purpose...
-    "-from-annotator-": annotation,
-    "@context": context
-  };
+  if (undefined !== annotation.id
+      && undefined !== annotation.text
+      && undefined !== annotation.uri
+      && undefined !== annotation.quote
+      && undefined !== annotation.ranges) {
+    return fromAnnotatorToWebAnnotation(annotation);
+  } else if (undefined !== annotation.target
+      && undefined !== annotation.text
+      && undefined !== annotation.uri
+      && undefined !== annotation.document
+      && undefined !== annotation.user) {
+    return fromHypothesisToWebAnnotation(annotation);
+  } else {
+    // TODO: is false the best response here?
+    return false;
+  }
 }
 
 function fromWebAnnotation(annotation) {
-  if (undefined === annotation['@type']
-      || annotation['@type'] !== 'oa:Annotation'
-      // TODO: maybe check the @context to be sure we mean `oa:Annotation`?
-      || annotation['@type'] !== 'Annotation') {
-    // if it's not a Web Annotation, don't change it
-    return annotation;
-  }
-  var rv = {
-    "uri": annotation.target.source,
-    "quote": "",
-    "text": annotation.body,
-    "ranges": [{}]
-  };
-
-  var selectors = annotation.target.selector.members;
-  for (var i = 0; i < selectors.length; i++) {
-    if (selectors[i]['@type'] === 'oa:TextQuoteSelector') {
-      rv.quote = selectors[i].exact;
-    } else if (selectors[i]['@type'] === 'oa:TextPositionSelector') {
-      rv.ranges[0].startOffset = selectors[i].start;
-      rv.ranges[0].endOffset = selectors[i].end;
-    }
-  }
-
-  // TODO: handle multiple ranges
-  rv.ranges[0].start = annotation['-from-annotator-'].ranges[0].start;
-  rv.ranges[0].end = annotation['-from-annotator-'].ranges[0].end;
-
-  return rv;
+  // TODO: support more than just Annotator.js
+  // TODO: ...yeah...confusing function name
+  return require('./from-annotator').to;
 }
 
 exports.toWebAnnotation = toWebAnnotation;
 exports.fromWebAnnotation = fromWebAnnotation;
 
-},{}]},{},[1]);
+},{"./from-annotator":2,"./from-hypothesis":3}]},{},[4]);
