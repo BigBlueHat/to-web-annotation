@@ -7,24 +7,24 @@ module.exports = {
   from: function(annotation) {
     return {
       "id": annotation.id,
-      "type": "oa:Annotation",
+      "type": "Annotation",
       "body": annotation.text,
       "target": {
         "id": "#resource",
-        "type": "oa:SpecificResource",
+        "type": "SpecificResource",
         "source": annotation.uri,
         "selector": {
           "id": "#selectors",
-          "type": "oa:Choice",
+          "type": "Choice",
           "members": [
             {
               "id": "#quote",
-              "type": "oa:TextQuoteSelector",
+              "type": "TextQuoteSelector",
               "exact": annotation.quote
             },
             {
               "id": "#position",
-              "type": "oa:TextPositionSelector",
+              "type": "TextPositionSelector",
               // TODO: handle multiple ranges
               "start": annotation.ranges[0].startOffset,
               "end": annotation.ranges[0].endOffset

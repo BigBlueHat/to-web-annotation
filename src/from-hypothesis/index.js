@@ -13,7 +13,7 @@ module.exports = {
       .replace('@hypothes.is', '');
     var rv = {
       "id": "http://hypothes.is/a/" + annotation.id,
-      "type": "oa:Annotation",
+      "type": "Annotation",
       "creator": {
         "id": annotation.user,
         "type": "Person",
