@@ -200,7 +200,7 @@ module.exports = {
     // TODO: turn RangeSelector (xpath) into #xpointer FragmentSelector
     var creator_nick = annotation.user.replace('acct:', '')
       .replace('@hypothes.is', '');
-    return {
+    var rv = {
       "@id": "http://hypothes.is/a/" + annotation.id,
       "@type": "oa:Annotation",
       "creator": {
@@ -208,7 +208,12 @@ module.exports = {
         "@type": "Person",
         "nick": creator_nick
       },
-      "body": annotation.text,
+      "body": [
+        {
+          "role": "commenting",
+          "text": annotation.text
+        }
+      ],
       "created": annotation.created,
       "target": annotation.target,
       // TODO: where should we keep the xpath stuff in Web Annotation?
@@ -216,6 +221,13 @@ module.exports = {
       "--original--": annotation,
       "@context": context
     };
+    annotation.tags.forEach(function(tag) {
+      rv.body.push({
+        "role": "tagging",
+        "text": tag
+      });
+    });
+    return rv;
   }
 };
 
