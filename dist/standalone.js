@@ -119,7 +119,8 @@ module.exports = {
    **/
   from: function(annotation) {
     return {
-      "id": annotation.id,
+      // TODO: Yeah...this is bad...make base url configurable?
+      "id": location.href + annotation.id,
       "type": "Annotation",
       "body": annotation.text,
       "target": {
