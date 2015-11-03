@@ -14,7 +14,6 @@ function toWebAnnotation(annotation) {
   } else if (undefined !== annotation.target
       && undefined !== annotation.text
       && undefined !== annotation.uri
-      && undefined !== annotation.document
       && undefined !== annotation.user) {
     return fromHypothesisToWebAnnotation(annotation);
   } else {

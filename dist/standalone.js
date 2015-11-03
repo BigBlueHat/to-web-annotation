@@ -193,6 +193,15 @@ module.exports = {
 },{"../context.json":1}],3:[function(require,module,exports){
 var context = require('../context.json');
 
+function isReply(annotation) {
+  return ('references' in annotation
+    && annotation.references.length > 0);
+}
+
+function fullUrl(id) {
+  return "http://hypothes.is/a/" + id;
+}
+
 module.exports = {
   /**
    * From http://hypothes.is/ JSON to Web Annotation
@@ -205,7 +214,7 @@ module.exports = {
     var creator_nick = annotation.user.replace('acct:', '')
       .replace('@hypothes.is', '');
     var rv = {
-      "id": "http://hypothes.is/a/" + annotation.id,
+      "id":  fullUrl(annotation.id),
       "type": "Annotation",
       "creator": {
         "id": annotation.user,
@@ -214,12 +223,14 @@ module.exports = {
       },
       "body": [
         {
-          "role": "commenting",
+          "role": (isReply(annotation) ? "replying" : "commenting"),
           "text": annotation.text
         }
       ],
       "created": annotation.created,
-      "target": annotation.target,
+      "target": (isReply(annotation)
+        ? fullUrl(annotation.references[0])
+        : annotation.target),
       // TODO: where should we keep the xpath stuff in Web Annotation?
       // ...this key is ugly on purpose...
       "--original--": annotation,
@@ -252,7 +263,6 @@ function toWebAnnotation(annotation) {
   } else if (undefined !== annotation.target
       && undefined !== annotation.text
       && undefined !== annotation.uri
-      && undefined !== annotation.document
       && undefined !== annotation.user) {
     return fromHypothesisToWebAnnotation(annotation);
   } else {
