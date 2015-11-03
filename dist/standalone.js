@@ -224,7 +224,8 @@ module.exports = {
       "body": [
         {
           "role": (isReply(annotation) ? "replying" : "commenting"),
-          "text": annotation.text
+          "text": annotation.text,
+          "format": "text/markdown"
         }
       ],
       "created": annotation.created,
