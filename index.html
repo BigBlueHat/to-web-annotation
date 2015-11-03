@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>To Web Annotation</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.7/semantic.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css" />
 </head>
 <body>
   <div class="ui internally celled grid">
@@ -20,7 +21,7 @@
       </div>
     </div>
   </div>
-  <div class="ui internally celled grid">
+  <div class="ui internally stretched celled grid">
     <div class="row" style="position: absolute; top: 3em; bottom: 0;">
       <textarea class="eight wide column" v-model="input | json"></textarea>
       <textarea class="eight wide column" v-model="input | toWebAnnotation | json"></textarea>
@@ -29,6 +30,8 @@
   <script src="dist/standalone.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.8/vue.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.16/vue-resource.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/mode/javascript/javascript.min.js"></script>
   <script>
   var app = new Vue({
     el: document.body,
@@ -38,6 +41,20 @@
     ready: function() {
       // load Annotator by default
       this.loadJSON('hypothesis.json');
+      var textareas = this.$el.querySelectorAll('textarea');
+      var cms = [];
+      for (var i = 0; i < textareas.length; i++) {
+        cms.push(CodeMirror.fromTextArea(textareas[i], {
+          matchBrackets: true,
+          autoCloseBrackets: true,
+          mode: "application/ld+json",
+          lineWrapping: true
+        }));
+      }
+      cms.forEach(function(cm) {
+        var classes = cm.display.wrapper.className;
+        cm.display.wrapper.className = classes + ' eight wide column';
+      });
     },
     methods: {
       loadJSON: function(url) {
