@@ -255,16 +255,16 @@ var fromAnnotatorToWebAnnotation = require('./from-annotator').from;
 var fromHypothesisToWebAnnotation = require('./from-hypothesis').from;
 
 function toWebAnnotation(annotation) {
-  if (undefined !== annotation.id
-      && undefined !== annotation.text
-      && undefined !== annotation.uri
-      && undefined !== annotation.quote
-      && undefined !== annotation.ranges) {
+  if ('id' in annotation
+      && 'text' in annotation
+      && 'uri' in annotation
+      && 'quote' in annotation
+      && 'ranges' in annotation) {
     return fromAnnotatorToWebAnnotation(annotation);
-  } else if (undefined !== annotation.target
-      && undefined !== annotation.text
-      && undefined !== annotation.uri
-      && undefined !== annotation.user) {
+  } else if ('target' in annotation
+      && 'text' in annotation
+      && 'uri' in annotation
+      && 'user' in annotation) {
     return fromHypothesisToWebAnnotation(annotation);
   } else {
     // TODO: is false the best response here?
