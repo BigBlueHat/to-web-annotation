@@ -1,4 +1,4 @@
-var context = require('../context.json');
+var context = require('../context.json')['@context'];
 
 function isReply(annotation) {
   return ('references' in annotation

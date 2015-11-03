@@ -111,7 +111,7 @@ module.exports={
 }
 
 },{}],2:[function(require,module,exports){
-var context = require('../context.json');
+var context = require('../context.json')['@context'];
 
 module.exports = {
   /**
@@ -191,7 +191,7 @@ module.exports = {
 };
 
 },{"../context.json":1}],3:[function(require,module,exports){
-var context = require('../context.json');
+var context = require('../context.json')['@context'];
 
 function isReply(annotation) {
   return ('references' in annotation

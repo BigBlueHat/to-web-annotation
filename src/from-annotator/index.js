@@ -1,4 +1,4 @@
-var context = require('../context.json');
+var context = require('../context.json')['@context'];
 
 module.exports = {
   /**
