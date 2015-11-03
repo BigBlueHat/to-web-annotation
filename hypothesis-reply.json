@@ -1,0 +1,34 @@
+{
+  "updated": "2015-11-03T17:37:02.126364+00:00",
+  "group": "__world__",
+  "target": [
+    {
+      "scope": [
+        "https://newclasses.nyu.edu/access/content/group/81e3bb2a-f53e-41f2-a2bd-9c1d43e1a545/09posing.pdf"
+      ]
+    }
+  ],
+  "tags": [],
+  "text": "i think this relates to the external/internal relationship you were thinking about above!",
+  "created": "2015-11-03T17:37:02.126346+00:00",
+  "uri": "https://newclasses.nyu.edu/access/content/group/81e3bb2a-f53e-41f2-a2bd-9c1d43e1a545/09posing.pdf",
+  "references": [
+    "dUvgskV2SqiszzY7N0coVQ"
+  ],
+  "user": "acct:jasminema@hypothes.is",
+  "id": "UbHUHWdoTvyLbavpYU0xmA",
+  "permissions": {
+    "admin": [
+      "acct:jasminema@hypothes.is"
+    ],
+    "read": [
+      "group:__world__"
+    ],
+    "update": [
+      "acct:jasminema@hypothes.is"
+    ],
+    "delete": [
+      "acct:jasminema@hypothes.is"
+    ]
+  }
+}
