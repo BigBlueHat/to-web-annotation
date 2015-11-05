@@ -214,14 +214,18 @@ module.exports = {
     if ('target' in annotation) {
       annotation.target.forEach(function(target) {
         var clean_target = {
+          type: 'SpecificResource',
           source: target.source,
-          selector: []
+          selector: {
+            type: 'Choice',
+            members: []
+          }
         };
         // skip RangeSelector until its valid...
         if ('selector' in target) {
           target.selector.forEach(function(selector) {
             if (selector.type !== 'RangeSelector') {
-              clean_target.selector.push(selector);
+              clean_target.selector.members.push(selector);
             }
           });
         }
