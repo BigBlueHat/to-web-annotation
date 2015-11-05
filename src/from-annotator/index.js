@@ -33,9 +33,6 @@ module.exports = {
           ]
         }
       },
-      // TODO: where should we keep the xpath stuff in Web Annotation?
-      // ...this key is ugly on purpose...
-      "--original--": annotation,
       "@context": context
     };
   },

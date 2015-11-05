@@ -39,9 +39,6 @@ module.exports = {
       "target": (isReply(annotation)
         ? fullUrl(annotation.references[0])
         : annotation.target),
-      // TODO: where should we keep the xpath stuff in Web Annotation?
-      // ...this key is ugly on purpose...
-      "--original--": annotation,
       "@context": context
     };
     annotation.tags.forEach(function(tag) {
