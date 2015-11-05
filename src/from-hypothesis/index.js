@@ -20,6 +20,24 @@ module.exports = {
     // TODO: turn RangeSelector (xpath) into #xpointer FragmentSelector
     var creator_nick = annotation.user.replace('acct:', '')
       .replace('@hypothes.is', '');
+    var targets = [];
+    if ('target' in annotation) {
+      annotation.target.forEach(function(target) {
+        var clean_target = {
+          source: target.source,
+          selector: []
+        };
+        // skip RangeSelector until its valid...
+        if ('selector' in target) {
+          target.selector.forEach(function(selector) {
+            if (selector.type !== 'RangeSelector') {
+              clean_target.selector.push(selector);
+            }
+          });
+        }
+        targets.push(clean_target);
+      });
+    }
     var rv = {
       "id":  fullUrl(annotation.id),
       "type": "Annotation",
@@ -38,7 +56,7 @@ module.exports = {
       "created": annotation.created,
       "target": (isReply(annotation)
         ? fullUrl(annotation.references[0])
-        : annotation.target),
+        : targets),
       "@context": context
     };
     annotation.tags.forEach(function(tag) {
