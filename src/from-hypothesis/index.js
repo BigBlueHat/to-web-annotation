@@ -58,6 +58,7 @@ module.exports = {
         }
       ],
       "created": annotation.created,
+      "modified": annotation.updated,
       "target": (isReply(annotation)
         ? fullUrl(annotation.references[0])
         : targets),
